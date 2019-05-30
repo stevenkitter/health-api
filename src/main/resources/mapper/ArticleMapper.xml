@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.spring.springboot.dao.ArticleDao">
+	<resultMap id="BaseResultMap" type="org.spring.springboot.domain.Article">
+		<result column="id" property="id" />
+		<result column="title" property="title" />
+		<result column="shortcontent" property="shortContent" />
+		<result column="content" property="content" />
+		<result column="picture" property="picture" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, title, shortcontent, content, picture
+	</sql>
+
+	<select id="findByTitle" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from article
+		where title like CONCAT('%',#{title},'%')
+	</select>
+	
+	<select id="findAll" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		id, title, shortcontent, picture
+		from article
+	</select>
+	
+	<select id="getContent" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		title, content
+		from article
+		where id=#{id}
+	</select>
+	
+	<insert id="insert" parameterType="org.spring.springboot.domain.Article">
+		INSERT INTO article(
+			
+			`title`,
+			`shortcontent`,
+			`content`,
+			`picture`
+		) VALUES (
+			
+			#{title},
+			#{shortContent},
+			#{content},
+			#{picture}
+		)
+	</insert>
+</mapper>

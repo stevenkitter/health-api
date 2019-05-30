@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.spring.springboot.dao.StreamDao">
+	<resultMap id="BaseResultMap" type="org.spring.springboot.domain.StreamEntity">
+		<result column="id" property="id" />
+		<result column="type" property="type" />
+		<result column="inOut" property="inOut" />
+		<result column="amount" property="amount" />
+		<result column="time" property="time" />
+		<result column="desc" property="desc" />
+		<result column="userId" property="userId" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, `type`, `inOut`, `amount`, `time`, `desc`, `userId`
+	</sql>
+
+	<select id="currDay" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from stream
+		WHERE  `userId` = #{userId} AND `time` &gt;= DATE(#{dateTime})
+				AND `time` &lt; DATE_ADD(DATE(#{dateTime}),INTERVAL 1 DAY)
+		
+	</select>
+	
+	<select id="Search" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from stream
+		<where>
+           <if test="userId!=null and userId!=''">  
+		    AND `userId` = #{userId}  
+		   </if>
+		   <if test="inOut!=null and inOut!=''">  
+		    AND `inOut` = #{inOut}  
+		   </if>
+           <if test="field=='week'">
+           	 
+           	AND  DATE_FORMAT( `time`, '%Y%m%d' ) = DATE_FORMAT( #{value} , '%Y%m%d' )
+           </if>
+           <if test="field=='month'">
+           	AND  DATE_FORMAT( `time`, '%Y%m%d' ) = DATE_FORMAT( #{value} , '%Y%m%d' )
+           </if>
+
+        </where>  
+
+		
+		
+		
+	</select>
+	
+	<insert id="insert" parameterType="org.spring.springboot.domain.StreamEntity">
+		INSERT INTO stream(
+			
+			`type`,
+			`inOut`,
+			`amount`,
+			`time`,
+			`desc`,
+			`userId`
+		) VALUES (
+			
+			#{type},
+			#{inOut},
+			#{amount},
+			#{time},
+			#{desc},
+			#{userId}
+		)
+	</insert>
+
+</mapper>

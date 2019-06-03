@@ -35,13 +35,11 @@
 	
 	<insert id="insert" parameterType="org.spring.springboot.domain.Article">
 		INSERT INTO article(
-			
 			`title`,
 			`shortcontent`,
 			`content`,
 			`picture`
 		) VALUES (
-			
 			#{title},
 			#{shortContent},
 			#{content},

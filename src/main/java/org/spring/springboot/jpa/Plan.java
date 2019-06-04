@@ -3,11 +3,9 @@ package org.spring.springboot.jpa;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 
 @Data
@@ -18,9 +16,32 @@ public class Plan extends Base implements Serializable {
     private String name;
     private Integer period;
 
+    @Column(name = "file_id")
+    private Long fileId;
+
+    @Column(name = "food_id")
+    private Long foodId;
+
+    @Column(name = "food_in")
+    private Integer foodIn;
+    private Integer consume;
+    private String plan;
+    private String description;
+    private String secret;
+
     @OneToOne
-    @JoinColumn(name = "fileId", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "file_id", referencedColumnName = "id", insertable = false, updatable = false)
     private File file;
+
+    @OneToOne
+    @JoinColumn(name = "food_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Food food;
+
+
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name = "plan_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private List<Sport> sports;
+
 
 
     @Override

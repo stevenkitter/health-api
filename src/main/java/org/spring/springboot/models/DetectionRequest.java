@@ -8,5 +8,5 @@ public class DetectionRequest {
     private Integer weight;
     private Integer waist;
     private Integer bust;
-    private Integer blood;
+    private Float blood;
 }

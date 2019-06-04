@@ -1,11 +1,11 @@
 package org.spring.springboot.jpa;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.spring.springboot.models.Conclusion;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 
@@ -22,9 +22,17 @@ public class Detection extends Base implements Serializable {
     @Column(name = "blood")
     private float blood;
 
-    @Column(name = "plan_id")
-    private Long planId;
 
     @Column(name = "user_id")
     private Long userId;
+
+
+
+    @JsonInclude
+    @Transient
+    private Conclusion conclusion;
+
+    @JsonInclude
+    @Transient
+    private String created;
 }

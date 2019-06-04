@@ -28,8 +28,7 @@
 	<select id="findById" resultMap="BaseResultMap" parameterType="java.lang.String">
 		
 		SELECT
-			u.id, u.userName, u.passWord, u.sex, u.height, u.weight, u.yaowei, u.tunwei, u.xuetang,
-			(SELECT MIN(s.time) FROM `stream` s WHERE s.userId = #{userId}) AS firstTime
+			u.id, u.userName, u.passWord, u.sex, u.height, u.weight, u.yaowei, u.tunwei, u.xuetang
 		FROM `user` u 
 		WHERE u.id = #{userId}
 	</select>

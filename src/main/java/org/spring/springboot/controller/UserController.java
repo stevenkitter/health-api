@@ -46,9 +46,9 @@ public class UserController {
     @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
     public User userInfo(@RequestParam(value = "userId", required = true) String userId) {
         User user = userService.findById(userId);
-        if(user.getFirstTime()!=null){
-        	user.setFirstDate(user.getFirstTime().toString().substring(0, 10));
-        }
+//        if(user.getFirstTime()!=null){
+//        	user.setFirstDate(user.getFirstTime().toString().substring(0, 10));
+//        }
         return user;
     }
     

@@ -1,0 +1,18 @@
+{
+  "groups": [
+    {
+      "name": "file",
+      "type": "org.spring.springboot.controller.StoragePro",
+      "sourceType": "org.spring.springboot.controller.StoragePro"
+    }
+  ],
+  "properties": [
+    {
+      "name": "file.location",
+      "type": "java.lang.String",
+      "sourceType": "org.spring.springboot.controller.StoragePro",
+      "defaultValue": "upload"
+    }
+  ],
+  "hints": []
+}

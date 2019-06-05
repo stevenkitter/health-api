@@ -5,7 +5,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 public class Tools {
 
     public static String filePath(String fileName) {
-        String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().scheme("http")
+        String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().scheme("https")
                 .path("/downloadFile/")
                 .path(fileName)
                 .toUriString();

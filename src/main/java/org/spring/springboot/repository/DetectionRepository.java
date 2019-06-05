@@ -11,6 +11,8 @@ import java.util.Optional;
 public interface DetectionRepository extends CrudRepository<Detection, Long> {
     Optional<Detection> findById(Long id);
 
+    void deleteByUserIdAndId(Long userId, Long id);
+
     @Query("SELECT m FROM Detection m WHERE m.id>0 AND m.userId = :userId")
     List<Detection> findByUserId(@Param("userId") Long userId);
 }

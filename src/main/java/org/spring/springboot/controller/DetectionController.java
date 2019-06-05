@@ -46,6 +46,11 @@ public class DetectionController {
         return new Response<>(200, "创建成功", "");
     }
 
+    @DeleteMapping("/detection")
+    public Response<String> deleteDetection(@RequestHeader(value="Token") Long token, @RequestParam(value = "id") Long id) {
+        detectionRepository.deleteById(id);
+        return new Response<>(200, "删除成功", "");
+    }
 
 
     @GetMapping("/detection/my")
